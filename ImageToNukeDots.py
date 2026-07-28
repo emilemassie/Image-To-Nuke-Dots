@@ -3,6 +3,7 @@ import os, sys
 import PyQt6
 from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6 import QtWidgets, uic, QtGui, QtCore
+import multiprocessing
 
 ui_file_path = os.path.join(os.path.dirname(__file__), 'ImageToNukeDots.ui')
 
@@ -208,35 +209,12 @@ class ImageToNukeDots(QWidget):
 
 
 
-#set cut_paste_input [stack 0]
-#push $cut_paste_input
-#Dot {
-# name Dot1
-# selected true
-# xpos -532
-# ypos 115
-#}
-#Dot {
-# inputs 0
-# name Dot2
-# selected true
-# xpos -520
-# ypos 115
-#}
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
-
+    multiprocessing.freeze_support()
+    if getattr(sys, 'frozen', False):
+        # App is running as a bundled binary
+        sys.stdout = open(os.devnull, 'w')
+        sys.stderr = open(os.devnull, 'w')
     app = QApplication(sys.argv)
     window = ImageToNukeDots()
     window.show()
