@@ -5,7 +5,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 from PyQt6 import QtWidgets, uic, QtGui, QtCore
 import multiprocessing
 
-ui_file_path = os.path.join(os.path.dirname(__file__), 'ImageToNukeDots.ui')
+ui_file_path = os.path.join(os.path.dirname(__file__), 'ui','ImageToNukeDots.ui')
 
 
 class ImageToNukeDots(QWidget):
@@ -13,6 +13,7 @@ class ImageToNukeDots(QWidget):
         super().__init__(parent=None)
         self.ui = uic.loadUi(ui_file_path, self)
         self.setWindowTitle('Image To Nuke Dots')
+        self.setWindowIcon(QtGui.QIcon(os.path.join(os.path.dirname(__file__), 'ui' 'icon.png')))
         self.image_path = None
         self.original_pixmap = None
         self.ui.toolButton.released.connect(self.load_image)
